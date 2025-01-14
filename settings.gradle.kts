@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "coconut2"
 include(":app")
-include(":app:coconut2-mvvm")
+include(":coconut2-mvvm")
