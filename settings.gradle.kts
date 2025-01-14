@@ -20,5 +20,5 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "coconut2"
-include(":app")
+include(":sample")
 include(":coconut2-mvvm")
