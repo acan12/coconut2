@@ -50,6 +50,8 @@ dependencies {
     implementation(libs.retrofit.converter.jackson)
     implementation(libs.dagger.hilt.android)
     ksp(libs.dagger.hilt.compiler)
+    implementation(libs.lifecycle.viewmodel)
+    implementation(libs.lifecycle.livedata)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

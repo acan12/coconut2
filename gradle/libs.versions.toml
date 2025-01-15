@@ -13,6 +13,7 @@ retrofit = "2.11.0"
 okhttpBom = "4.12.0"
 security = "1.0.0"
 coroutines = "1.10.1"
+lifecycle = "2.8.7"
 
 [libraries]
 
@@ -33,6 +34,9 @@ okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor" 
 retrofit-converter-jackson = { group = "com.squareup.retrofit2", name = "converter-jackson", version.ref = "retrofit" }
 caroutines = { group = "org.jetbrains.kotlinx",name = "kotlinx-coroutines-android", version.ref = "coroutines"}
 caroutines-core = { group = "org.jetbrains.kotlinx",name = "kotlinx-coroutines-core", version.ref = "coroutines"}
+
+lifecycle-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
+lifecycle-livedata = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycle" }
 
 
 [plugins]

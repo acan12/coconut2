@@ -56,6 +56,8 @@ dependencies {
     implementation(libs.okhttp.logging)
     implementation(libs.caroutines)
     implementation(libs.caroutines.core)
+    implementation(libs.lifecycle.viewmodel)
+    implementation(libs.lifecycle.livedata)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
