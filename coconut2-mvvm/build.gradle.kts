@@ -54,6 +54,8 @@ dependencies {
     implementation(platform(libs.okhttp.bom))
     implementation(libs.okhttp)
     implementation(libs.okhttp.logging)
+    implementation(libs.caroutines)
+    implementation(libs.caroutines.core)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

@@ -12,6 +12,7 @@ hilt = "2.55"
 retrofit = "2.11.0"
 okhttpBom = "4.12.0"
 security = "1.0.0"
+coroutines = "1.10.1"
 
 [libraries]
 
@@ -30,6 +31,8 @@ okhttp-bom = { group = "com.squareup.okhttp3", name = "okhttp-bom", version.ref 
 okhttp = { group = "com.squareup.okhttp3", name = "okhttp" }
 okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor" }
 retrofit-converter-jackson = { group = "com.squareup.retrofit2", name = "converter-jackson", version.ref = "retrofit" }
+caroutines = { group = "org.jetbrains.kotlinx",name = "kotlinx-coroutines-android", version.ref = "coroutines"}
+caroutines-core = { group = "org.jetbrains.kotlinx",name = "kotlinx-coroutines-core", version.ref = "coroutines"}
 
 
 [plugins]
