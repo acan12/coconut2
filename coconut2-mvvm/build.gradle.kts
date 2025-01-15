@@ -43,12 +43,17 @@ dependencies {
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
+    implementation(libs.security.crypto)
     implementation(libs.material)
     implementation(libs.retrofit)
     implementation(platform(libs.okhttp.bom))
     implementation(libs.dagger.hilt.android)
     ksp(libs.dagger.hilt.compiler)
     implementation(libs.retrofit)
+    implementation(libs.retrofit.converter.jackson)
+    implementation(platform(libs.okhttp.bom))
+    implementation(libs.okhttp)
+    implementation(libs.okhttp.logging)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

@@ -45,6 +45,9 @@ dependencies {
     implementation(libs.material)
     implementation(libs.retrofit)
     implementation(platform(libs.okhttp.bom))
+    implementation(libs.okhttp)
+    implementation(libs.okhttp.logging)
+    implementation(libs.retrofit.converter.jackson)
     implementation(libs.dagger.hilt.android)
     ksp(libs.dagger.hilt.compiler)
 

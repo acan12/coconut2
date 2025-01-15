@@ -11,9 +11,12 @@ ksp = "1.9.10-1.0.13"
 hilt = "2.55"
 retrofit = "2.11.0"
 okhttpBom = "4.12.0"
+security = "1.0.0"
 
 [libraries]
+
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+security-crypto = { group = "androidx.security", name = "security-crypto", version.ref = "security"}
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -24,6 +27,9 @@ dagger-hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", ve
 #dagger-hilt-testing = { group = "com.google.dagger", name = "hilt-android-testing", version.ref = "hilt" }
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 okhttp-bom = { group = "com.squareup.okhttp3", name = "okhttp-bom", version.ref = "okhttpBom" }
+okhttp = { group = "com.squareup.okhttp3", name = "okhttp" }
+okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor" }
+retrofit-converter-jackson = { group = "com.squareup.retrofit2", name = "converter-jackson", version.ref = "retrofit" }
 
 
 [plugins]
