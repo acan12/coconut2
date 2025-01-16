@@ -1,12 +1,9 @@
 package app.coconut2.coconut2_mvvm.network
 
-import com.fasterxml.jackson.databind.ObjectMapper
-import retrofit2.HttpException
 
+class NetworkErrorParser {
 
-class ErrorParser {
-
-//    inline fun <reified T> parseErrorThrowable(jsonErrorBody: String): T?? {
+//    inline fun <reified T> parseErrorThrowable(jsonErrorBody: String): T? {
 //        try {
 ////            val error: HttpException = (e as HttpException)
 //            var message = "Error network connection"
