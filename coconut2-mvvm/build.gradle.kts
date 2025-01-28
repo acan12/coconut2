@@ -49,6 +49,8 @@ dependencies {
     ksp(libs.dagger.hilt.compiler)
     implementation(libs.caroutines)
     implementation(libs.caroutines.core)
+    implementation(libs.lifecycle.viewmodel)
+    implementation(libs.lifecycle.livedata)
     implementation(libs.rx.android)
     implementation(libs.retrofit)
     implementation(platform(libs.okhttp.bom))

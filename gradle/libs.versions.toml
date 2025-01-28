@@ -34,6 +34,8 @@ retrofit-converter-jackson = { group = "com.squareup.retrofit2", name = "convert
 caroutines = { group = "org.jetbrains.kotlinx",name = "kotlinx-coroutines-android", version.ref = "coroutines"}
 caroutines-core = { group = "org.jetbrains.kotlinx",name = "kotlinx-coroutines-core", version.ref = "coroutines"}
 rx-android = { group = "io.reactivex.rxjava3", name = "rxandroid", version.ref = "rxAndroid"}
+lifecycle-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
+lifecycle-livedata = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycle" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
