@@ -1,4 +1,4 @@
-package app.coconut2.sample.activity
+package app.coconut2.sample.ui.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
