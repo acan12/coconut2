@@ -4,6 +4,10 @@ import app.coconut2.coconut2_mvvm.interfaces.IApiService
 import okhttp3.Interceptor
 
 open class BaseApi() {
+    enum class Method {
+        GET, PUT, POST, UPDATE, DELETE
+    }
+
     protected fun setupApiDomain(
         apiService: IApiService,
         apiDomain: String,
