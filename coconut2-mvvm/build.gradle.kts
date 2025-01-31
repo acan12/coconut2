@@ -38,25 +38,33 @@ android {
 
 dependencies {
 
+    // androidx
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
-    implementation(libs.security.crypto)
     implementation(libs.material)
+    // security
+    implementation(libs.security.crypto)
+    // dagger-hilt
     implementation(libs.dagger.hilt.android)
     ksp(libs.dagger.hilt.compiler)
+    // coroutines
     implementation(libs.caroutines)
     implementation(libs.caroutines.core)
+    // lifecycle
     implementation(libs.lifecycle.viewmodel)
     implementation(libs.lifecycle.livedata)
-    implementation(libs.rx.android)
-    implementation(libs.retrofit)
+    // rxandroid 3
+    implementation(libs.rx.android3)
+   // okhttp
     implementation(platform(libs.okhttp.bom))
     implementation(libs.okhttp)
     implementation(libs.okhttp.logging)
+    // retrofit
+    implementation(libs.retrofit)
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter.jackson)
     implementation(libs.retrofit.adapter.rxjava3)
-
+    // unit test
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

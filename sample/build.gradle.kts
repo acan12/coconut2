@@ -43,25 +43,30 @@ android {
 dependencies {
     implementation(project(":coconut2-mvvm"))
 
+    // androidx
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
+    // dagger-hilt
     implementation(libs.dagger.hilt.android)
     ksp(libs.dagger.hilt.compiler)
+    // caroutines
     implementation(libs.caroutines)
     implementation(libs.caroutines.core)
-    implementation(libs.rx.android)
-    implementation(libs.retrofit)
+    // rx-android3
+    implementation(libs.rx.android3)
     implementation(platform(libs.okhttp.bom))
+    // okhttp
     implementation(libs.okhttp)
     implementation(libs.okhttp.logging)
+    // retrofit
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter.jackson)
-    implementation(libs.dagger.hilt.android)
-    ksp(libs.dagger.hilt.compiler)
+    // viewmodel livedata
     implementation(libs.lifecycle.viewmodel)
     implementation(libs.lifecycle.livedata)
 
+    // unit test
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
