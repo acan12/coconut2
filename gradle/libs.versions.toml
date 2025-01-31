@@ -1,5 +1,6 @@
 [versions]
 agp = "8.8.0"
+androidLibrary = "8.8.0"
 kotlin = "2.0.0"
 coreKtx = "1.15.0"
 junit = "4.13.2"
@@ -40,6 +41,8 @@ lifecycle-livedata = { group = "androidx.lifecycle", name = "lifecycle-livedata-
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
+android-library = { id = "com.android.library" , version.ref = "androidLibrary"}
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+maven-publish = { id = "maven-publish" }
 
