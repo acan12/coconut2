@@ -55,6 +55,7 @@ dependencies {
     implementation(libs.okhttp.logging)
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter.jackson)
+    implementation(libs.retrofit.adapter.rxjava3)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

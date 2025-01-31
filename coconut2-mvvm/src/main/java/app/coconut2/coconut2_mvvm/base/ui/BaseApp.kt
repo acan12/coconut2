@@ -1,5 +1,5 @@
 package app.coconut2.coconut2_mvvm.base.ui
 
-import androidx.appcompat.app.AppCompatActivity
+import android.app.Application
 
-open class BaseApp : AppCompatActivity()
+open class BaseApp : Application()
