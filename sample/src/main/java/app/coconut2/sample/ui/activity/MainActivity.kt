@@ -1,9 +1,9 @@
 package app.coconut2.sample.ui.activity
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import app.coconut2.coconut2_mvvm.base.ui.BaseActivity
+import app.coconut2.sample.R
 import app.coconut2.sample.databinding.ActivityMainBinding
 
 class MainActivity: BaseActivity<ActivityMainBinding> () {
@@ -15,6 +15,6 @@ class MainActivity: BaseActivity<ActivityMainBinding> () {
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
-        binding.textTitlePage.text = "Setup Base Page"
+        binding.textTitlePage.text = resources.getString(R.string.app_name)
     }
 }
