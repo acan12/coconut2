@@ -6,6 +6,7 @@ import dagger.hilt.components.SingletonComponent
 
 @Module
 @InstallIn(SingletonComponent::class)
-class ApiServiceModule {
+object ApiModule {
 
+    fun provideRetrofit(){}
 }
