@@ -1,4 +1,4 @@
-package app.coconut2.coconut2_mvvm.base.ui
+package app.coconut2.coconut2_mvvm.base
 
 import android.content.ComponentCallbacks2
 import android.content.Context
@@ -6,7 +6,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.viewbinding.ViewBinding
-import app.coconut2.coconut2_mvvm.base.datasource.helper.NetworkManagerHelper
+import app.coconut2.coconut2_mvvm.core.datasource.helper.NetworkManagerHelper
 
 abstract class BaseActivity<VB: ViewBinding> : AppCompatActivity(), ComponentCallbacks2 {
     private var _binding : VB? = null

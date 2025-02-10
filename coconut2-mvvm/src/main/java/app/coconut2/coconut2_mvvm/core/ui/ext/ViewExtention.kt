@@ -1,4 +1,4 @@
-package app.coconut2.coconut2_mvvm.base.ui.ext
+package app.coconut2.coconut2_mvvm.core.ui.ext
 
 import android.view.View
 

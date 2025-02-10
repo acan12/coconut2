@@ -1,4 +1,4 @@
-package app.coconut2.coconut2_mvvm.base.datasource.helper
+package app.coconut2.coconut2_mvvm.core.datasource.helper
 
 import okhttp3.OkHttpClient
 import java.security.cert.CertificateException

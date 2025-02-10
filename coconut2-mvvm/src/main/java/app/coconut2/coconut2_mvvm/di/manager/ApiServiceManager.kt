@@ -1,7 +1,7 @@
 package app.coconut2.coconut2_mvvm.di.manager
 
-import app.coconut2.coconut2_mvvm.base.datasource.BaseApi
-import app.coconut2.coconut2_mvvm.base.datasource.helper.UnsafeHttpClientHelper
+import app.coconut2.coconut2_mvvm.core.datasource.BaseApi
+import app.coconut2.coconut2_mvvm.core.datasource.helper.UnsafeHttpClientHelper
 import app.coconut2.coconut2_mvvm.interfaces.IApiService
 import app.coconut2.coconut2_mvvm.network.WifiConnectionInterceptor
 import okhttp3.Interceptor

@@ -1,7 +1,6 @@
-package app.coconut2.coconut2_mvvm.base.domain
+package app.coconut2.coconut2_mvvm.base
 
-import app.coconut2.coconut2_mvvm.base.datasource.remote.BaseResponse
-import app.coconut2.coconut2_mvvm.base.datasource.remote.ErrorResponse
+import app.coconut2.coconut2_mvvm.core.datasource.remote.ErrorResponse
 import app.coconut2.coconut2_mvvm.interfaces.IApiResponse
 
 class BaseRepository : IApiResponse{

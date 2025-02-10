@@ -1,4 +1,4 @@
-package app.coconut2.coconut2_mvvm.base.datasource.helper
+package app.coconut2.coconut2_mvvm.core.datasource.helper
 
 import android.content.BroadcastReceiver
 import android.content.Context

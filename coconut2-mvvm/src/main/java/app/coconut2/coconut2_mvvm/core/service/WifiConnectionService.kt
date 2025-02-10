@@ -1,4 +1,4 @@
-package app.coconut2.coconut2_mvvm.base.domain.service
+package app.coconut2.coconut2_mvvm.core.service
 
 import android.content.Context
 import android.net.ConnectivityManager

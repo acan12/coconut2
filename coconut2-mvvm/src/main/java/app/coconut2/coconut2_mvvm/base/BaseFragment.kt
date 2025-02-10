@@ -1,4 +1,4 @@
-package app.coconut2.coconut2_mvvm.base.ui
+package app.coconut2.coconut2_mvvm.base
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.viewbinding.ViewBinding
-import app.coconut2.coconut2_mvvm.base.ui.ext.avoidDoubleClicks
+import app.coconut2.coconut2_mvvm.core.ui.ext.avoidDoubleClicks
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 abstract class BaseFragment<VB : ViewBinding> : Fragment(), View.OnClickListener {

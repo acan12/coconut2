@@ -1,4 +1,4 @@
-package app.coconut2.coconut2_mvvm.base.datasource.interfaces
+package app.coconut2.coconut2_mvvm.core.datasource.interfaces
 
 import okhttp3.Interceptor
 

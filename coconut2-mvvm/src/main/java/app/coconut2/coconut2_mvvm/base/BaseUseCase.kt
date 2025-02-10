@@ -1,4 +1,4 @@
-package app.coconut2.coconut2_mvvm.base.domain
+package app.coconut2.coconut2_mvvm.base
 
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow

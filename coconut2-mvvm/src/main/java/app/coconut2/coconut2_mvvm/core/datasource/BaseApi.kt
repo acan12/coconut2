@@ -1,7 +1,9 @@
-package app.coconut2.coconut2_mvvm.base.datasource
+package app.coconut2.coconut2_mvvm.core.datasource
 
 import app.coconut2.coconut2_mvvm.interfaces.IApiService
+import app.coconut2.coconut2_mvvm.network.NetworkResult
 import okhttp3.Interceptor
+import okhttp3.Response
 
 open class BaseApi() {
     enum class Method {
