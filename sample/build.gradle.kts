@@ -21,11 +21,16 @@ android {
 
     buildTypes {
         release {
+            isDebuggable = false
             isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+//            proguardFiles(
+//                getDefaultProguardFile("proguard-android-optimize.txt"),
+//                "proguard-rules.pro"
+//            )
+        }
+        debug {
+            isDebuggable = true
+            applicationIdSuffix = ".debug"
         }
     }
     compileOptions {
@@ -37,6 +42,20 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
+    }
+
+    flavorDimensions += "version"
+    productFlavors {
+        create("staging") {
+            applicationIdSuffix = ".staging"
+            versionNameSuffix = "-staging"
+            buildConfigField("String", "SERVER_URL", "\"https:/user-bogasari.ptape.com\"")
+        }
+
+        create("production") {
+            buildConfigField("String", "SERVER_URL", "\"https:/user-bogasari.com\"")
+        }
     }
 }
 

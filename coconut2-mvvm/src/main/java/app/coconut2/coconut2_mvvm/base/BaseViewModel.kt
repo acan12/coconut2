@@ -10,20 +10,11 @@ import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-open class BaseViewModel<S: UIState, A: UIAction> : ViewModel(){
+open class BaseViewModel<S: UIState> : ViewModel(){
     private val _uiState = MutableStateFlow<S?>(null)
     val uiState: StateFlow<S?> = _uiState
 
-    private val _uiAction = MutableSharedFlow<A>()
-    val uiAction: SharedFlow<A> = _uiAction
-
     fun setState(state: S){
         _uiState.value = state
-    }
-
-    fun sendAction(action: A){
-        viewModelScope.launch {
-            _uiAction.emit(action)
-        }
     }
 }

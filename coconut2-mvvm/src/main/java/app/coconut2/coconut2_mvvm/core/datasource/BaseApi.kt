@@ -4,13 +4,14 @@ import app.coconut2.coconut2_mvvm.interfaces.IApiService
 import app.coconut2.coconut2_mvvm.network.NetworkResult
 import okhttp3.Interceptor
 import okhttp3.Response
+import retrofit2.Retrofit
 
-open class BaseApi() {
+sealed class BaseApi() {
     enum class Method {
         GET, PUT, POST, UPDATE, DELETE
     }
 
-    protected fun setupApiDomain(
+    protected fun builder(
         apiService: IApiService,
         apiDomain: String,
         allowUntrusted: Boolean,
@@ -20,7 +21,7 @@ open class BaseApi() {
         interceptors: Array<Interceptor> = arrayOf(),
         networkInterceptors: Array<Interceptor> = arrayOf()
     ): Any {
-        return apiService.initApiService(
+        return apiService.init(
             apiDomain,
             allowUntrusted,
             apiservice,

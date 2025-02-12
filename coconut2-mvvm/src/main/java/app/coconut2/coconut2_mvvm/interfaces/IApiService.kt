@@ -3,7 +3,7 @@ package app.coconut2.coconut2_mvvm.interfaces
 import okhttp3.Interceptor
 
 interface IApiService {
-    fun initApiService(
+    fun init(
         apiDomain: String,
         allowUntrusted: Boolean,
         clazz: Class<*>,

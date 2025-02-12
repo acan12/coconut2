@@ -1,6 +1,5 @@
 package app.coconut2.coconut2_mvvm.di.manager
 
-import app.coconut2.coconut2_mvvm.core.datasource.BaseApi
 import app.coconut2.coconut2_mvvm.core.datasource.helper.UnsafeHttpClientHelper
 import app.coconut2.coconut2_mvvm.interfaces.IApiService
 import app.coconut2.coconut2_mvvm.network.WifiConnectionInterceptor
@@ -12,8 +11,8 @@ import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.jackson.JacksonConverterFactory
 import java.util.concurrent.TimeUnit
 
-class ApiServiceManager : BaseApi(), IApiService {
-    override fun initApiService(
+class ApiServiceManager : IApiService {
+    override fun init(
         apiDomain: String,
         allowUntrusted: Boolean,
         clazz: Class<*>,
@@ -21,7 +20,8 @@ class ApiServiceManager : BaseApi(), IApiService {
         enableLoggingHttp: Boolean,
         interceptors: Array<Interceptor>,
         networkInterceptors: Array<Interceptor>
-    ): Any {
+    ): Retrofit {
+        
         return Retrofit.Builder()
             .baseUrl(apiDomain)
             .addConverterFactory(JacksonConverterFactory.create())
@@ -34,7 +34,7 @@ class ApiServiceManager : BaseApi(), IApiService {
                     interceptors,
                     networkInterceptors
                 )
-            ).build().create(clazz)
+            ).build()
     }
 
     private fun getHttpClient(
@@ -87,8 +87,5 @@ class ApiServiceManager : BaseApi(), IApiService {
         if (customNetworkInterceptors.isNotEmpty())
             for (interceptor: Interceptor in customNetworkInterceptors)
                 httpClient.addNetworkInterceptor(interceptor)
-
     }
-
-
 }

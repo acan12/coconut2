@@ -18,10 +18,10 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+//            proguardFiles(
+//                getDefaultProguardFile("proguard-android-optimize.txt"),
+//                "proguard-rules.pro"
+//            )
         }
     }
     compileOptions {
@@ -46,7 +46,7 @@ dependencies {
     implementation(libs.security.crypto)
     // dagger-hilt
     implementation(libs.dagger.hilt.android)
-    implementation(libs.androidx.room.ktx)
+//    implementation(libs.androidx.room.ktx)
     ksp(libs.dagger.hilt.compiler)
     // coroutines
     implementation(libs.caroutines)
@@ -66,8 +66,7 @@ dependencies {
     implementation(libs.retrofit.converter.jackson)
     implementation(libs.retrofit.adapter.rxjava3)
     // room database
-    implementation(libs.room.database)
-    implementation(libs.room.database.ktx)
+//    implementation(libs.room.database.ktx)
     // unit test
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

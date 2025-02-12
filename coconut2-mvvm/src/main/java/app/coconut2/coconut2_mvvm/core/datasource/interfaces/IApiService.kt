@@ -1,6 +1,7 @@
 package app.coconut2.coconut2_mvvm.core.datasource.interfaces
 
 import okhttp3.Interceptor
+import retrofit2.Retrofit
 
 interface IApiService {
     fun initApiService(
@@ -11,5 +12,5 @@ interface IApiService {
         enableLoggingHttp: Boolean,
         interceptors: Array<Interceptor>,
         networkInterceptors: Array<Interceptor>
-    ): Any
+    ): Retrofit
 }
