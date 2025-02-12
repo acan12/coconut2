@@ -13,16 +13,16 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object ApiServiceModule {
 
-    @Provides
-    @Singleton
-    fun provideRemoteData(): SourceRemoteDataSource = SourceRemoteDataSource(provideApi())
+//    @Provides
+//    @Singleton
+//    fun provideRemoteData(): SourceRemoteDataSource = SourceRemoteDataSource(provideApi())
+
+//    @Provides
+//    @Singleton
+//    fun provideApi(): Api = Api(provideApiService())
 
     @Provides
     @Singleton
-    fun provideApi(): Api = Api(provideApiService())
-
-    @Provides
-    @Singleton
-    fun provideApiService(): IApiService = ApiServiceManager()
+    fun provideRetrofit(): IApiService = ApiServiceManager()
 
 }
