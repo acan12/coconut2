@@ -51,10 +51,13 @@ android {
             applicationIdSuffix = ".staging"
             versionNameSuffix = "-staging"
             buildConfigField("String", "SERVER_URL", "\"https:/user-bogasari.ptape.com\"")
+            buildConfigField("String", "NEWSORG_APIKEY", "\"6d362365d5e245faa1fe3253c83c45ac\"")
+
         }
 
         create("production") {
             buildConfigField("String", "SERVER_URL", "\"https:/user-bogasari.com\"")
+            buildConfigField("String", "NEWSORG_APIKEY", "\"6d362365d5e245faa1fe3253c83c45ac\"")
         }
     }
 }

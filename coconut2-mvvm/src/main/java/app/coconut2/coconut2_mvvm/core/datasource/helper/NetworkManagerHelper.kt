@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.net.ConnectivityManager
 import android.net.Network
+import android.net.NetworkCapabilities
 import android.os.Build
 import androidx.lifecycle.LiveData
 
@@ -51,9 +52,7 @@ class NetworkManagerHelper(private val context: Context) : LiveData<Boolean>() {
             postValue(false)
         }
     }
-
 }
-
 
 class NetworkConnectionReceiver(private val onConnected: () -> Unit = {}, private val onDisconnect: () -> Unit = {}) : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
@@ -71,9 +70,16 @@ class NetworkConnectionReceiver(private val onConnected: () -> Unit = {}, privat
     private fun isOnline(context: Context): Boolean {
         return try {
             val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-            val netInfo = cm.activeNetworkInfo
+            val capability = cm.getNetworkCapabilities(cm.activeNetwork)
             //should check null because in airplane mode it will be null
-            netInfo != null && netInfo.isConnected
+
+            capability != null && let {
+                capability.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)
+                        || capability.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)
+                        || capability.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET)
+            }
+
+
         } catch (e: NullPointerException) {
             e.printStackTrace()
             false
