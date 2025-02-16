@@ -46,7 +46,6 @@ dependencies {
     implementation(libs.security.crypto)
     // dagger-hilt
     implementation(libs.dagger.hilt.android)
-//    implementation(libs.androidx.room.ktx)
     ksp(libs.dagger.hilt.compiler)
     // coroutines
     implementation(libs.caroutines)
@@ -65,8 +64,11 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter.jackson)
     implementation(libs.retrofit.adapter.rxjava3)
+    // glide image
+    implementation(libs.glide.image)
     // room database
-//    implementation(libs.room.database.ktx)
+    implementation(libs.room.database.ktx)
+    implementation(libs.androidx.room.ktx)
     // unit test
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

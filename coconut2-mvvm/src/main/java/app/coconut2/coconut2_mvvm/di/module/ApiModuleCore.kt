@@ -1,7 +1,6 @@
 package app.coconut2.coconut2_mvvm.di.module
 
-import app.coconut2.coconut2_mvvm.di.manager.ApiServiceManager
-import app.coconut2.coconut2_mvvm.interfaces.IApiService
+import app.coconut2.coconut2_mvvm.network.ApiManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -10,7 +9,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object ApiModule {
+class ApiModuleCore {
 
 //    @Provides
 //    @Singleton
@@ -20,8 +19,8 @@ object ApiModule {
 //    @Singleton
 //    fun provideApi(): Api = Api(provideApiService())
 
-    @Provides
-    @Singleton
-    fun provideRetrofit(): IApiService = ApiServiceManager()
+//    @Provides
+//    @Singleton
+//    fun provideRetrofit(): IApiManager = ApiManagerManager()
 
 }

@@ -1,8 +1,7 @@
-package app.coconut2.coconut2_mvvm.di.manager
+package app.coconut2.coconut2_mvvm.network
 
 import app.coconut2.coconut2_mvvm.core.datasource.helper.UnsafeHttpClientHelper
-import app.coconut2.coconut2_mvvm.interfaces.IApiService
-import app.coconut2.coconut2_mvvm.network.WifiConnectionInterceptor
+import app.coconut2.coconut2_mvvm.interfaces.IApiManager
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -11,7 +10,7 @@ import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.jackson.JacksonConverterFactory
 import java.util.concurrent.TimeUnit
 
-class ApiServiceManager : IApiService {
+class ApiManager : IApiManager {
     override fun init(
         apiDomain: String,
         allowUntrusted: Boolean,
