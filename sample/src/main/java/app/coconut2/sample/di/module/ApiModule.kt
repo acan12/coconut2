@@ -15,5 +15,4 @@ class ApiModule {
     @Provides
     @Singleton
     fun provideApi(): Api = Api(ApiManager())
-
 }

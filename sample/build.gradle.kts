@@ -87,6 +87,8 @@ dependencies {
     // viewmodel livedata
     implementation(libs.lifecycle.viewmodel)
     implementation(libs.lifecycle.livedata)
+    // room database
+    implementation(libs.androidx.room.ktx)
 
     // unit test
     testImplementation(libs.junit)

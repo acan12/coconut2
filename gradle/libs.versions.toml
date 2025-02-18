@@ -31,6 +31,7 @@ material = { group = "com.google.android.material", name = "material", version.r
 dagger-hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 dagger-hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
 #dagger-hilt-testing = { group = "com.google.dagger", name = "hilt-android-testing", version.ref = "hilt" }
+
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 okhttp-bom = { group = "com.squareup.okhttp3", name = "okhttp-bom", version.ref = "okhttpBom" }
 okhttp = { group = "com.squareup.okhttp3", name = "okhttp" }
@@ -42,8 +43,7 @@ caroutines-core = { group = "org.jetbrains.kotlinx",name = "kotlinx-coroutines-c
 rx-android3 = { group = "io.reactivex.rxjava3", name = "rxandroid", version.ref = "rxAndroid"}
 lifecycle-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
 lifecycle-livedata = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycle" }
-room-database = { group = "androidx.room:room-runtime:2.4.2", name = "room-runtime", version.ref = "roomKtx" }
-room-database-ktx = { group = "androidx.room", name = "room-runtime-ktx", version.ref = "roomKtx" }
+
 androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "roomKtx" }
 glide-image = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }
 

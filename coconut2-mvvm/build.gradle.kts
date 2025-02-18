@@ -67,7 +67,6 @@ dependencies {
     // glide image
     implementation(libs.glide.image)
     // room database
-    implementation(libs.room.database.ktx)
     implementation(libs.androidx.room.ktx)
     // unit test
     testImplementation(libs.junit)
