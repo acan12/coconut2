@@ -91,6 +91,11 @@ dependencies {
     implementation(libs.androidx.activity)
     // room database
     implementation(libs.androidx.room.ktx)
+    // video
+    implementation(libs.camera.video)
+    implementation(libs.camera.lifecycle)
+    implementation(libs.camera.view)
+    implementation(libs.camera.camera2)
 
     // unit test
     testImplementation(libs.junit)
