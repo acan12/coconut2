@@ -19,6 +19,7 @@ rxAndroid = "3.0.2"
 adapterRxjava3 = "2.11.0"
 roomKtx = "2.6.1"
 glide = "4.16.0"
+activityVersion = "1.10.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -43,6 +44,7 @@ caroutines-core = { group = "org.jetbrains.kotlinx",name = "kotlinx-coroutines-c
 rx-android3 = { group = "io.reactivex.rxjava3", name = "rxandroid", version.ref = "rxAndroid"}
 lifecycle-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
 lifecycle-livedata = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycle" }
+androidx-activity = { group = "androidx.activity", name ="activity-ktx", version.ref = "activityVersion" }
 
 androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "roomKtx" }
 glide-image = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }

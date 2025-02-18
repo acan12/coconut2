@@ -1,4 +1,4 @@
-package app.coconut2.sample.datasource.repo
+package app.coconut2.sample.data.repo
 
 import app.coconut2.coconut2_mvvm.network.ApiManager
 import javax.inject.Inject

@@ -3,7 +3,7 @@ package app.coconut2.coconut2_mvvm.core.datasource
 import app.coconut2.coconut2_mvvm.interfaces.IApiManager
 import okhttp3.Interceptor
 
-open class ApiBuilder() {
+open class ApiBuilder {
     enum class Method {
         GET, PUT, POST, UPDATE, DELETE
     }

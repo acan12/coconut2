@@ -1,4 +1,4 @@
-package app.coconut2.sample.datasource.remote.api
+package app.coconut2.sample.data.remote
 
 import app.coconut2.coconut2_mvvm.core.datasource.ApiBuilder
 import app.coconut2.coconut2_mvvm.interfaces.IApiManager

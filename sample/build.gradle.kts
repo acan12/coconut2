@@ -52,12 +52,13 @@ android {
             versionNameSuffix = "-staging"
             buildConfigField("String", "SERVER_URL", "\"https:/user-bogasari.ptape.com\"")
             buildConfigField("String", "NEWSORG_APIKEY", "\"6d362365d5e245faa1fe3253c83c45ac\"")
-
+            buildConfigField("String", "DB_NAME", "\"coconut-sample-db\"")
         }
 
         create("production") {
             buildConfigField("String", "SERVER_URL", "\"https:/user-bogasari.com\"")
             buildConfigField("String", "NEWSORG_APIKEY", "\"6d362365d5e245faa1fe3253c83c45ac\"")
+            buildConfigField("String", "DB_NAME", "\"coconut-sample-db\"")
         }
     }
 }
@@ -87,6 +88,7 @@ dependencies {
     // viewmodel livedata
     implementation(libs.lifecycle.viewmodel)
     implementation(libs.lifecycle.livedata)
+    implementation(libs.androidx.activity)
     // room database
     implementation(libs.androidx.room.ktx)
 
