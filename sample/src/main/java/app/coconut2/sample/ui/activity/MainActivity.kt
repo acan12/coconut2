@@ -41,14 +41,16 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
         binding.textTitlePage.text = resources.getString(R.string.app_name)
         binding.btnRecordVideo.setOnClickListener {
-            val intent = Intent(MediaStore.ACTION_VIDEO_CAPTURE)
-            intent.putExtra(MediaStore.EXTRA_DURATION_LIMIT, 200)
-            intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 0)
-            if (intent.resolveActivity(getPackageManager()) != null) {
-                startActivityForResult(intent, CAMERA_PERMISSION_CODE);
+            if(hasRequiredPermission()) {
+                val intent = Intent(MediaStore.ACTION_VIDEO_CAPTURE)
+                intent.putExtra(MediaStore.EXTRA_DURATION_LIMIT, 200)
+                intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 0)
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    startActivityForResult(intent, CAMERA_PERMISSION_CODE);
+                }
+            } else {
+                ActivityCompat.requestPermissions(this, CAMERAX_PERMISSIONS, CAMERA_PERMISSION_CODE)
             }
-//            val cameraController = LifecycleCameraController(this@MainActivity)
-//            recordVideo(cameraController)
         }
     }
 
@@ -61,47 +63,47 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         super.onActivityResult(requestCode, resultCode, data, caller)
     }
 
-    @SuppressLint("MissingPermission")
-    private fun recordVideo(controller: LifecycleCameraController) {
-        if (recording != null) {
-            recording?.stop()
-            recording = null
-            return
-        }
-
-        if (!hasRequiredPermission()) {
-            ActivityCompat.requestPermissions(this, CAMERAX_PERMISSIONS, CAMERA_PERMISSION_CODE)
-        } else {
-            Toast.makeText(this@MainActivity, "Permission already granted", Toast.LENGTH_SHORT).show()
-            val outputFile = File(filesDir, "my-recording.mp4")
-            recording = controller.startRecording(
-                FileOutputOptions.Builder(outputFile).build(),
-                AudioConfig.create(true),
-                ContextCompat.getMainExecutor(applicationContext),
-            ) { event ->
-                when (event) {
-//                    is VideoRecordEvent.Finalize -> {
-//                        if (event.hasError()) {
-//                            recording?.close()
-//                            recording = null
+//    @SuppressLint("MissingPermission")
+//    private fun recordVideo(controller: LifecycleCameraController) {
+//        if (recording != null) {
+//            recording?.stop()
+//            recording = null
+//            return
+//        }
 //
-//                            Toast.makeText(
-//                                applicationContext,
-//                                "Video capture failed",
-//                                Toast.LENGTH_LONG
-//                            ).show()
-//                        } else {
-//                            Toast.makeText(
-//                                applicationContext,
-//                                "Video capture succeeded",
-//                                Toast.LENGTH_LONG
-//                            ).show()
-//                        }
-//                    }
-                }
-            }
-        }
-    }
+//        if (!hasRequiredPermission()) {
+//            ActivityCompat.requestPermissions(this, CAMERAX_PERMISSIONS, CAMERA_PERMISSION_CODE)
+//        } else {
+//            Toast.makeText(this@MainActivity, "Permission already granted", Toast.LENGTH_SHORT).show()
+//            val outputFile = File(filesDir, "my-recording.mp4")
+//            recording = controller.startRecording(
+//                FileOutputOptions.Builder(outputFile).build(),
+//                AudioConfig.create(true),
+//                ContextCompat.getMainExecutor(applicationContext),
+//            ) { event ->
+//                when (event) {
+////                    is VideoRecordEvent.Finalize -> {
+////                        if (event.hasError()) {
+////                            recording?.close()
+////                            recording = null
+////
+////                            Toast.makeText(
+////                                applicationContext,
+////                                "Video capture failed",
+////                                Toast.LENGTH_LONG
+////                            ).show()
+////                        } else {
+////                            Toast.makeText(
+////                                applicationContext,
+////                                "Video capture succeeded",
+////                                Toast.LENGTH_LONG
+////                            ).show()
+////                        }
+////                    }
+//                }
+//            }
+//        }
+//    }
 
 
     companion object {
@@ -121,20 +123,20 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         }
     }
 
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray,
-        deviceId: Int
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults, deviceId)
-
-        if(requestCode == CAMERA_PERMISSION_CODE) {
-            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(this@MainActivity, "Camera Permission Granted", Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(this@MainActivity, "Camera Permission Denied", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
+//    override fun onRequestPermissionsResult(
+//        requestCode: Int,
+//        permissions: Array<out String>,
+//        grantResults: IntArray,
+//        deviceId: Int
+//    ) {
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults, deviceId)
+//
+//        if(requestCode == CAMERA_PERMISSION_CODE) {
+//            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//                Toast.makeText(this@MainActivity, "Camera Permission Granted", Toast.LENGTH_SHORT).show()
+//            } else {
+//                Toast.makeText(this@MainActivity, "Camera Permission Denied", Toast.LENGTH_SHORT).show()
+//            }
+//        }
+//    }
 }
