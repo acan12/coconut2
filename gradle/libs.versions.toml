@@ -52,7 +52,7 @@ camera-video = { group ="androidx.camera", name = "camera-video", version.ref = 
 camera-lifecycle = { group = "androidx.camera", name = "camera-lifecycle", version.ref = "cameraxVersion" }
 camera-view = { group = "androidx.camera", name = "camera-view", version.ref = "cameraxVersion" }
 camera-camera2 = { group = "androidx.camera", name = "camera-camera2", version.ref = "cameraxVersion" }
-
+camera-core = { group = "androidx.camera", name = "camera-core", version.ref = "cameraxVersion" }
 
 
 [plugins]

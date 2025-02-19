@@ -2,8 +2,11 @@ package app.coconut2.sample.ui.activity
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.ComponentCaller
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.provider.MediaStore
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.camera.video.FileOutputOptions
@@ -38,8 +41,24 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
         binding.textTitlePage.text = resources.getString(R.string.app_name)
         binding.btnRecordVideo.setOnClickListener {
-            recordVideo(LifecycleCameraController(this@MainActivity))
+            val intent = Intent(MediaStore.ACTION_VIDEO_CAPTURE)
+            intent.putExtra(MediaStore.EXTRA_DURATION_LIMIT, 200)
+            intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 0)
+            if (intent.resolveActivity(getPackageManager()) != null) {
+                startActivityForResult(intent, CAMERA_PERMISSION_CODE);
+            }
+//            val cameraController = LifecycleCameraController(this@MainActivity)
+//            recordVideo(cameraController)
         }
+    }
+
+    override fun onActivityResult(
+        requestCode: Int,
+        resultCode: Int,
+        data: Intent?,
+        caller: ComponentCaller
+    ) {
+        super.onActivityResult(requestCode, resultCode, data, caller)
     }
 
     @SuppressLint("MissingPermission")
@@ -61,24 +80,24 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 ContextCompat.getMainExecutor(applicationContext),
             ) { event ->
                 when (event) {
-                    is VideoRecordEvent.Finalize -> {
-                        if (event.hasError()) {
-                            recording?.close()
-                            recording = null
-
-                            Toast.makeText(
-                                applicationContext,
-                                "Video capture failed",
-                                Toast.LENGTH_LONG
-                            ).show()
-                        } else {
-                            Toast.makeText(
-                                applicationContext,
-                                "Video capture succeeded",
-                                Toast.LENGTH_LONG
-                            ).show()
-                        }
-                    }
+//                    is VideoRecordEvent.Finalize -> {
+//                        if (event.hasError()) {
+//                            recording?.close()
+//                            recording = null
+//
+//                            Toast.makeText(
+//                                applicationContext,
+//                                "Video capture failed",
+//                                Toast.LENGTH_LONG
+//                            ).show()
+//                        } else {
+//                            Toast.makeText(
+//                                applicationContext,
+//                                "Video capture succeeded",
+//                                Toast.LENGTH_LONG
+//                            ).show()
+//                        }
+//                    }
                 }
             }
         }
