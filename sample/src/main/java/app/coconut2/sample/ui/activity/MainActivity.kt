@@ -6,16 +6,15 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.camera.lifecycle.LifecycleCamera
 import androidx.camera.video.FileOutputOptions
 import androidx.camera.video.Recording
 import androidx.camera.video.VideoRecordEvent
 import androidx.camera.view.LifecycleCameraController
 import androidx.camera.view.video.AudioConfig
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
 import app.coconut2.coconut2_mvvm.base.BaseActivity
-import app.coconut2.sample.BuildConfig
 import app.coconut2.sample.R
 import app.coconut2.sample.databinding.ActivityMainBinding
 import app.coconut2.sample.viewmodel.UserViewModel
@@ -25,6 +24,7 @@ import java.io.File
 @AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>() {
 
+    private val CAMERA_PERMISSION_CODE = 100
     private var recording: Recording? = null
 
     private val userViewModel: UserViewModel by viewModels()
@@ -44,39 +44,40 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     @SuppressLint("MissingPermission")
     private fun recordVideo(controller: LifecycleCameraController) {
-        if(recording != null){
+        if (recording != null) {
             recording?.stop()
             recording = null
             return
         }
 
-        if(!hasRequiredPermission()){
-            return
-        }
+        if (!hasRequiredPermission()) {
+            ActivityCompat.requestPermissions(this, CAMERAX_PERMISSIONS, CAMERA_PERMISSION_CODE)
+        } else {
+            Toast.makeText(this@MainActivity, "Permission already granted", Toast.LENGTH_SHORT).show()
+            val outputFile = File(filesDir, "my-recording.mp4")
+            recording = controller.startRecording(
+                FileOutputOptions.Builder(outputFile).build(),
+                AudioConfig.create(true),
+                ContextCompat.getMainExecutor(applicationContext),
+            ) { event ->
+                when (event) {
+                    is VideoRecordEvent.Finalize -> {
+                        if (event.hasError()) {
+                            recording?.close()
+                            recording = null
 
-        val outputFile = File(filesDir, "my-recording.mp4")
-        recording = controller.startRecording(
-            FileOutputOptions.Builder(outputFile).build(),
-            AudioConfig.create(true),
-            ContextCompat.getMainExecutor(applicationContext),
-        ) { event ->
-            when(event) {
-                is VideoRecordEvent.Finalize -> {
-                    if(event.hasError()) {
-                        recording?.close()
-                        recording = null
-
-                        Toast.makeText(
-                            applicationContext,
-                            "Video capture failed",
-                            Toast.LENGTH_LONG
-                        ).show()
-                    } else {
-                        Toast.makeText(
-                            applicationContext,
-                            "Video capture succeeded",
-                            Toast.LENGTH_LONG
-                        ).show()
+                            Toast.makeText(
+                                applicationContext,
+                                "Video capture failed",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        } else {
+                            Toast.makeText(
+                                applicationContext,
+                                "Video capture succeeded",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
                     }
                 }
             }
@@ -87,16 +88,34 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     companion object {
         private val CAMERAX_PERMISSIONS = arrayOf(
             Manifest.permission.CAMERA,
-            Manifest.permission.RECORD_AUDIO
+            Manifest.permission.RECORD_AUDIO,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
         )
     }
 
-    private fun hasRequiredPermission() : Boolean {
+    private fun hasRequiredPermission(): Boolean {
         return CAMERAX_PERMISSIONS.all {
             ContextCompat.checkSelfPermission(
                 applicationContext,
                 it
             ) == PackageManager.PERMISSION_GRANTED
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray,
+        deviceId: Int
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults, deviceId)
+
+        if(requestCode == CAMERA_PERMISSION_CODE) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this@MainActivity, "Camera Permission Granted", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this@MainActivity, "Camera Permission Denied", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 }
