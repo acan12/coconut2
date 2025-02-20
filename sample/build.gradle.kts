@@ -97,6 +97,7 @@ dependencies {
     implementation(libs.camera.view)
     implementation(libs.camera.camera2)
     implementation(libs.camera.core)
+    implementation(libs.camera.ext)
 
     // unit test
     testImplementation(libs.junit)
