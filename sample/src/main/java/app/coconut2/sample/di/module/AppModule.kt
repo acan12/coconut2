@@ -1,7 +1,7 @@
 package app.coconut2.sample.di.module
 
 import android.content.Context
-import app.coconut2.coconut2_mvvm.core.datasource.local.LocalDatabaseBuilder
+import androidx.room.Room
 import app.coconut2.coconut2_mvvm.network.ApiManager
 import app.coconut2.sample.BuildConfig
 import app.coconut2.sample.data.local.SampleDatabase
@@ -21,11 +21,12 @@ object AppModule {
     @Singleton
     fun provideDatabase(
         @ApplicationContext context: Context
-    ) = LocalDatabaseBuilder(
+    ) = Room.databaseBuilder(
         context,
         SampleDatabase::class.java,
         BuildConfig.DB_NAME,
-    ).build()
+    ).fallbackToDestructiveMigration()
+        .build()
 
     @Provides
     @Singleton

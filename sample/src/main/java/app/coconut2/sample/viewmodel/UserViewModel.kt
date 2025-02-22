@@ -15,8 +15,11 @@ class UserViewModel @Inject constructor(
 ) : ViewModel(){
     val allUsers: Flow<List<UserEntity>> = userRepository.allUsers
 
-    fun insert(user: UserEntity) =
+    fun insert(user: UserEntity) {
         viewModelScope.launch {
             userRepository.insert(user)
         }
+
+    }
+
 }

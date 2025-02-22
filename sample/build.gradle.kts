@@ -90,7 +90,9 @@ dependencies {
     implementation(libs.lifecycle.livedata)
     implementation(libs.androidx.activity)
     // room database
+    implementation(libs.androidx.room)
     implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.compiler)
 
     // unit test
     testImplementation(libs.junit)

@@ -10,7 +10,8 @@ class UserRepository @Inject constructor(
 ) {
     val allUsers: Flow<List<UserEntity>> = userDao.getAllUsers()
 
-    suspend fun insert(user: UserEntity) {
-        userDao.insert(user)
-    }
+    suspend fun insert(user: UserEntity) = userDao.insert(user)
+
+    fun deleteUser(user: UserEntity) = userDao.deleteUser(user)
+
 }
