@@ -9,10 +9,10 @@ import javax.inject.Inject
 class UserRepository @Inject constructor(
     private val userDao: UserDao
 ): BaseRepository() {
-    val allUsers: Flow<List<UserEntity>> = userDao.getAllUsers()
+    fun allUsers(): Flow<List<UserEntity>> = userDao.getAllUsers()
 
     suspend fun insert(user: UserEntity) = userDao.insert(user)
 
-    fun deleteUser(user: UserEntity) = userDao.deleteUser(user)
+    suspend fun deleteUser(user: UserEntity) = userDao.deleteUser(user)
 
 }

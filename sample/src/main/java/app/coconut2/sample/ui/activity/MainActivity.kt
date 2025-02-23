@@ -5,7 +5,6 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.view.WindowCompat
 import app.coconut2.coconut2_mvvm.base.BaseActivity
-import app.coconut2.sample.BuildConfig
 import app.coconut2.sample.R
 import app.coconut2.sample.data.model.entity.UserEntity
 import app.coconut2.sample.databinding.ActivityMainBinding
@@ -14,6 +13,8 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>() {
+
+    private var userLatest: UserEntity? = null
 
     private val viewModel: UserViewModel by viewModels()
 
@@ -25,18 +26,38 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
         binding.textTitlePage.text = resources.getString(R.string.app_name)
-        
+
         binding.btnInsertData.setOnClickListener {
-            viewModel.insert(
-                UserEntity(
-                    name = "Dodol Jawa",
-                    address = "Pondok Indah",
-                    age = 18
-                )
-            )
-            Toast.makeText(this, "Data Inserted!", Toast.LENGTH_LONG).show()
+            doInsertData()
+        }
+        binding.btnDeleteData.setOnClickListener {
+            doDeleteData()
         }
 
+        observerHandler()
+    }
 
+    private fun doDeleteData() {
+
+        if (userLatest != null)
+            viewModel.deleteLastUser(userLatest!!)
+    }
+
+    private fun doInsertData() {
+        viewModel.insert(
+            UserEntity(
+                name = "Dodol 2 Jawa",
+                address = "Pondok Indah",
+                age = 18
+            )
+        )
+    }
+
+    private fun observerHandler() {
+        viewModel.allUsers.observe(this) {
+            userLatest = it.last()
+            val count = it.size
+            Toast.makeText(this, "Data Size = $count", Toast.LENGTH_LONG).show()
+        }
     }
 }
