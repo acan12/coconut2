@@ -29,8 +29,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         binding.btnInsertData.setOnClickListener {
             viewModel.insert(
                 UserEntity(
-                    name = "Dodol",
-                    address = "Tanah Kusir",
+                    name = "Dodol Jawa",
+                    address = "Pondok Indah",
                     age = 18
                 )
             )

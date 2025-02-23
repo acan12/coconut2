@@ -13,7 +13,7 @@ interface UserDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE )
     suspend fun insert(data: UserEntity)
 
-    @Query("SELECT * FROM user_table")
+    @Query("SELECT * FROM user")
     fun getAllUsers(): Flow<List<UserEntity>>
 
     @Delete
