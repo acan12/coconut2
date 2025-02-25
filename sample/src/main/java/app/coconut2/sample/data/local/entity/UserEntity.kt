@@ -1,4 +1,4 @@
-package app.coconut2.sample.data.model.entity
+package app.coconut2.sample.data.local.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

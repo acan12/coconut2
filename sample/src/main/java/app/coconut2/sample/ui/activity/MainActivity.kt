@@ -7,7 +7,7 @@ import androidx.core.view.WindowCompat
 import androidx.core.view.isVisible
 import app.coconut2.coconut2_mvvm.base.BaseActivity
 import app.coconut2.sample.R
-import app.coconut2.sample.data.model.entity.UserEntity
+import app.coconut2.sample.data.local.entity.UserEntity
 import app.coconut2.sample.databinding.ActivityMainBinding
 import app.coconut2.sample.viewmodel.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
