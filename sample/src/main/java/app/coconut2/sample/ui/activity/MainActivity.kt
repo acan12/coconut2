@@ -9,7 +9,7 @@ import app.coconut2.coconut2_mvvm.base.BaseActivity
 import app.coconut2.sample.R
 import app.coconut2.sample.data.local.entity.UserEntity
 import app.coconut2.sample.databinding.ActivityMainBinding
-import app.coconut2.sample.viewmodel.UserViewModel
+import app.coconut2.sample.viewmodel.user.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
