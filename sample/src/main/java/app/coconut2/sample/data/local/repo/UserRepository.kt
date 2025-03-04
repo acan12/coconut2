@@ -1,12 +1,14 @@
-package app.coconut2.sample.data.repo.local
+package app.coconut2.sample.data.local.repo
 
 import app.coconut2.coconut2_mvvm.base.BaseRepository
 import app.coconut2.sample.data.local.dao.UserDao
 import app.coconut2.sample.data.local.entity.UserEntity
 import app.coconut2.sample.domain.user.IUserRepository
+import dagger.hilt.android.scopes.ActivityScoped
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
+@ActivityScoped
 class UserRepository @Inject constructor(
     private val userDao: UserDao
 ): IUserRepository, BaseRepository() {
