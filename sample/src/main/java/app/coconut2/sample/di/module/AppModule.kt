@@ -29,9 +29,5 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideUserDao(db: SampleDatabase) = db.userDao()
-
-    @Provides
-    @Singleton
     fun provideApi(): Api = Api(ApiManager())
 }
