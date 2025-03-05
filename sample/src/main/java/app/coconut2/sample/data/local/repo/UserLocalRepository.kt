@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 @ActivityScoped
-class UserRepository @Inject constructor(
+class UserLocalRepository @Inject constructor(
     private val userDao: UserDao
 ): IUserRepository, BaseRepository() {
     override fun allUsers(): Flow<List<UserEntity>> = userDao.getAllUsers()

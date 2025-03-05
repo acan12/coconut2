@@ -1,8 +1,8 @@
-package app.coconut2.sample.core.di.module
+package app.coconut2.sample.core.di
 
 import app.coconut2.sample.data.local.dao.UserDao
 import app.coconut2.sample.domain.repo.user.IUserRepository
-import app.coconut2.sample.data.local.repo.UserRepository
+import app.coconut2.sample.data.local.repo.UserLocalRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,5 +13,5 @@ import dagger.hilt.components.SingletonComponent
 object RepoModule {
 
     @Provides
-    fun provideUserRepository(userDao: UserDao): IUserRepository = UserRepository(userDao)
+    fun provideUserRepository(userDao: UserDao): IUserRepository = UserLocalRepository(userDao)
 }

@@ -1,8 +1,10 @@
-package app.coconut2.sample.core.di.module
+package app.coconut2.sample.core.di
 
 import android.content.Context
+import androidx.lifecycle.LiveData
 import app.coconut2.coconut2_mvvm.core.datasource.local.LocalDatabaseBuilder
 import app.coconut2.coconut2_mvvm.network.ApiManager
+import app.coconut2.coconut2_mvvm.network.ConnectionManager
 import app.coconut2.sample.BuildConfig
 import app.coconut2.sample.data.local.SampleDatabase
 import app.coconut2.sample.data.remote.Api
@@ -30,4 +32,9 @@ object AppModule {
     @Provides
     @Singleton
     fun provideApi(): Api = Api(ApiManager())
+
+    @Provides
+    @Singleton
+    fun provideConnectionChecker(@ApplicationContext context: Context): ConnectionManager =
+        ConnectionManager(context)
 }
