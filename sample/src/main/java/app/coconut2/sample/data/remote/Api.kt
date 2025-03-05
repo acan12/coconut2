@@ -14,13 +14,13 @@ open class Api @Inject constructor(val apiManager: IApiManager) {
         return map
     }
 
-    fun getDomainNetwork(): DataApi =
+    fun getDomainNetwork(): ApiService =
         ApiBuilder.build(
             apiDomain = BuildConfig.SERVER_URL,
             allowUntrusted = true,
-            apiService = DataApi::class.java,
+            apiService = ApiService::class.java,
             timeOut = 300,
             enableLogging = BuildConfig.DEBUG,
             apiManager = apiManager
-        ) as DataApi
+        ) as ApiService
 }
