@@ -27,8 +27,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     override fun inflateBinding(): ActivityMainBinding =
         ActivityMainBinding.inflate(layoutInflater)
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
