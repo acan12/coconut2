@@ -1,4 +1,4 @@
-package app.coconut2.sample.di.module
+package app.coconut2.sample.core.di.module
 
 import app.coconut2.sample.data.local.SampleDatabase
 import dagger.Module

@@ -1,4 +1,4 @@
-package app.coconut2.sample.domain.user
+package app.coconut2.sample.domain.repo.user
 
 import app.coconut2.sample.data.local.entity.UserEntity
 import kotlinx.coroutines.flow.Flow

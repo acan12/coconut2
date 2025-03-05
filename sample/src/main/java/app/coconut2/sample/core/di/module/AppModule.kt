@@ -1,4 +1,4 @@
-package app.coconut2.sample.di.module
+package app.coconut2.sample.core.di.module
 
 import android.content.Context
 import app.coconut2.coconut2_mvvm.core.datasource.local.LocalDatabaseBuilder
