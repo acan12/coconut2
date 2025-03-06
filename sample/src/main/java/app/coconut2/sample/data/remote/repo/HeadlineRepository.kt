@@ -1,7 +1,9 @@
 package app.coconut2.sample.data.remote.repo
 
-import app.coconut2.coconut2_mvvm.network.ApiManager
+import app.coconut2.sample.data.remote.Api
 import javax.inject.Inject
 
-class HeadlineRepository @Inject constructor(api: ApiManager) {
+class HeadlineRepository @Inject constructor(private val api: Api) {
+    suspend fun getSourceAsync() =
+        api.getDomainNetwork().getTopHeadlines(api.initHeader())
 }

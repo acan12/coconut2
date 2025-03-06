@@ -3,7 +3,7 @@ package app.coconut2.sample.data.remote.response
 import app.coconut2.coconut2_mvvm.base.BaseResponse
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 
-class ApiTopHeadlineResponse : BaseResponse() {
+class TopHeadlineResponse : BaseResponse() {
     val sources: List<DataResponse?> = emptyList()
 
     @JsonIgnoreProperties(ignoreUnknown = true)
