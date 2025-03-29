@@ -1,6 +1,7 @@
 package app.coconut2.sample.ui.screen.activity
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.view.WindowCompat
@@ -34,7 +35,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         setupConnection(connectionManager) { isConnect ->
             showShortToast("Inside observer connection = $isConnect")
         }
-
+        fetchLoadData()
         binding.textTitlePage.text = resources.getString(R.string.app_name)
 
         binding.btnInsertData.setOnClickListener {
@@ -45,6 +46,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         }
 
         observerHandler()
+    }
+
+    private fun fetchLoadData() {
+        viewModel.getTopHeadline()
     }
 
     private fun doDeleteData() {
@@ -77,6 +82,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 allUserSize = it.size
                 Toast.makeText(this, "Data Size = $allUserSize", Toast.LENGTH_SHORT).show()
             } else userLatest = null
+        }
+
+        viewModel.topHeadline.observe(this) {
+            Toast.makeText(this@MainActivity, "Size: ${it.size}", Toast.LENGTH_SHORT).show()
         }
     }
 }

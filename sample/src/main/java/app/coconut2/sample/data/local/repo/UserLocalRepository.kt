@@ -1,6 +1,6 @@
 package app.coconut2.sample.data.local.repo
 
-import app.coconut2.coconut2_mvvm.base.BaseRepository
+import app.coconut2.coconut2_mvvm.base.BaseLocalRepository
 import app.coconut2.sample.data.local.dao.UserDao
 import app.coconut2.sample.data.local.entity.UserEntity
 import app.coconut2.sample.domain.repo.user.IUserRepository
@@ -11,7 +11,7 @@ import javax.inject.Inject
 @ActivityScoped
 class UserLocalRepository @Inject constructor(
     private val userDao: UserDao
-): IUserRepository, BaseRepository() {
+): IUserRepository, BaseLocalRepository() {
     override fun allUsers(): Flow<List<UserEntity>> = userDao.getAllUsers()
 
     override suspend fun insert(user: UserEntity) = userDao.insert(user)

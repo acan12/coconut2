@@ -1,7 +1,6 @@
 package app.coconut2.sample.core.di
 
 import android.content.Context
-import androidx.lifecycle.LiveData
 import app.coconut2.coconut2_mvvm.core.datasource.local.LocalDatabaseBuilder
 import app.coconut2.coconut2_mvvm.network.ApiManager
 import app.coconut2.coconut2_mvvm.network.ConnectionManager

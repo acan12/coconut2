@@ -19,8 +19,8 @@ class ApiManager : IApiManager {
         enableLoggingHttp: Boolean,
         interceptors: Array<Interceptor>,
         networkInterceptors: Array<Interceptor>
-    ): Retrofit {
-        
+    ): Any {
+
         return Retrofit.Builder()
             .baseUrl(apiDomain)
             .addConverterFactory(JacksonConverterFactory.create())
@@ -33,7 +33,7 @@ class ApiManager : IApiManager {
                     interceptors,
                     networkInterceptors
                 )
-            ).build()
+            ).build().create(clazz)
     }
 
     private fun getHttpClient(
@@ -70,7 +70,7 @@ class ApiManager : IApiManager {
         customInterceptors: Array<Interceptor>
     ) {
         // add network state information interceptor as default
-        httpClient.addInterceptor(WifiConnectionInterceptor())
+//        httpClient.addNetworkInterceptor(WifiConnectionInterceptor())
 
         // add custom interceptor
         if (customInterceptors.isNotEmpty())

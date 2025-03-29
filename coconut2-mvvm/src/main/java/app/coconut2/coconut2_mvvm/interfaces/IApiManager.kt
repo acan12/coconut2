@@ -1,6 +1,7 @@
 package app.coconut2.coconut2_mvvm.interfaces
 
 import okhttp3.Interceptor
+import retrofit2.Retrofit
 
 interface IApiManager {
     fun init(

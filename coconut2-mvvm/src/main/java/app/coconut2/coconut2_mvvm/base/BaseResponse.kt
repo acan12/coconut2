@@ -5,9 +5,10 @@ import com.fasterxml.jackson.annotation.JsonInclude
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-abstract class BaseResponse {
-    val meta: BaseMeta = BaseMeta()
-
+data class BaseResponse<T>(
+    var meta: BaseMeta = BaseMeta(),
+    var data: T? = null
+) {
     @JsonIgnoreProperties(ignoreUnknown = true)
     data class BaseMeta(
         var status: Boolean = false,
