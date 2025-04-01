@@ -1,7 +1,6 @@
 package app.coconut2.sample.ui.screen.activity
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.view.WindowCompat
@@ -30,30 +29,40 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        WindowCompat.setDecorFitsSystemWindows(window, false)
+        init()
 
+        setupUiView()
+        setupLoadData()
+        setupListener()
+
+        observerHandler()
+    }
+
+    private fun init() {
+        WindowCompat.setDecorFitsSystemWindows(window, false)
         setupConnection(connectionManager) { isConnect ->
             showShortToast("Inside observer connection = $isConnect")
         }
-        fetchLoadData()
-        binding.textTitlePage.text = resources.getString(R.string.app_name)
+    }
 
+    private fun setupUiView() {
+        binding.textTitlePage.text = resources.getString(R.string.app_name)
+    }
+
+    private fun setupListener() {
         binding.btnInsertData.setOnClickListener {
             doInsertData()
         }
         binding.btnDeleteData.setOnClickListener {
             doDeleteData()
         }
-
-        observerHandler()
     }
 
-    private fun fetchLoadData() {
+    private fun setupLoadData() {
         viewModel.getTopHeadline()
     }
 
     private fun doDeleteData() {
-
         val hasLast = (allUserSize ?: 0) > 1
 
         if (userLatest != null)

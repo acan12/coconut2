@@ -9,11 +9,11 @@ import androidx.lifecycle.viewModelScope
 import app.coconut2.coconut2_mvvm.network.ApiState
 import app.coconut2.sample.data.local.entity.UserEntity
 import app.coconut2.sample.domain.mapper.HeadlineData
-import app.coconut2.sample.domain.usecase.GetUserUseCase
+import app.coconut2.sample.domain.mapper.toHeadlineData
 import app.coconut2.sample.domain.repo.user.IUserRepository
 import app.coconut2.sample.domain.usecase.GetTopHeadlineUseCase
+import app.coconut2.sample.domain.usecase.GetUserUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -46,17 +46,23 @@ class UserViewModel @Inject constructor(
     fun getTopHeadline() {
         viewModelScope.launch {
             getTopHeadlineUseCase().collect { result ->
-                when(result){
+                when (result) {
                     is ApiState.Success -> {
-                        _topHeadline.postValue(result.data)
+                        val data = result.data.sources.map {
+                            it.toHeadlineData()
+                        }
+                        _topHeadline.postValue(data)
                     }
+
                     is ApiState.Error<*> -> {
                         Log.d("TAG", result.message.toString())
                     }
+
                     else -> {
-                        Log.d("TAG", "Loading.......")
+                        Log.d("TAG", "Something wrong happen")
                     }
                 }
+
             }
         }
     }
