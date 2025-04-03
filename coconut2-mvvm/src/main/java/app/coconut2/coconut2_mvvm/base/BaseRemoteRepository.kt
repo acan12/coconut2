@@ -8,21 +8,8 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import retrofit2.Response
-import java.util.Calendar
 
-abstract class BaseRemoteRepository(
-//    val apiDao: ApiDao
-) {
-//    suspend fun <T> saveResponse(
-//        data: T
-//    ) {
-//        val api = ApiEntity(
-//            name = "",
-//            value = data.toString(),
-//            updateDate = Calendar.getInstance().time.toString()
-//        )
-//        apiDao.insert(api)
-//    }
+abstract class BaseRemoteRepository() {
 
     fun <T> safeApiCall(
         dispatcher: CoroutineDispatcher = Dispatchers.IO,
