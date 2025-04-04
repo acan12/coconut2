@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import retrofit2.Response
 
-abstract class BaseRemoteRepository() {
+abstract class BaseRepository() {
 
     fun <T> safeApiCall(
         dispatcher: CoroutineDispatcher = Dispatchers.IO,
