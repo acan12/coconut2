@@ -1,7 +1,6 @@
 package app.coconut2.sample.data.local.dao
 
 import androidx.room.Dao
-import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -14,8 +13,8 @@ interface ApiDao {
     suspend fun insert(data: ApiEntity)
 
     @Query("SELECT * FROM api WHERE name = :name")
-    fun getFromName(name: String): Flow<ApiEntity>
+    fun getResponseByName(name: String): Flow<ApiEntity>
 
-    @Delete
-    suspend fun deleteApi(api: ApiEntity)
+    @Query("DELETE FROM api WHERE name = :name")
+    suspend fun deleteByName(name: String)
 }

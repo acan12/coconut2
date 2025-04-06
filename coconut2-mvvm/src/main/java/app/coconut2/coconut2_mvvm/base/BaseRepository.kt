@@ -14,7 +14,7 @@ abstract class BaseRepository() {
     fun <T> safeApiCall(
         dispatcher: CoroutineDispatcher = Dispatchers.IO,
         apiCall: suspend () -> Response<T>,
-        saveResponse: Boolean = false,
+        saveResponse: suspend (T) -> Unit = {}
     ): Flow<ApiState<T>> = flow {
         try {
             emit(ApiState.Loading())
@@ -23,7 +23,7 @@ abstract class BaseRepository() {
                 val data = response.body()
                 if (data != null) {
                     emit(ApiState.Success(data))
-//                    saveResponse(data)
+                    saveResponse(data)
                 } else {
                     val error = response.errorBody()
                     if (error != null) {
