@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.dagger.hilt.android)
 }
 
 android {
@@ -20,11 +21,16 @@ android {
 
     buildTypes {
         release {
+            isDebuggable = false
             isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+//            proguardFiles(
+//                getDefaultProguardFile("proguard-android-optimize.txt"),
+//                "proguard-rules.pro"
+//            )
+        }
+        debug {
+            isDebuggable = true
+            applicationIdSuffix = ".debug"
         }
     }
     compileOptions {
@@ -32,33 +38,63 @@ android {
         targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = JavaVersion.VERSION_11.toString()
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
+    }
+
+    flavorDimensions += "version"
+    productFlavors {
+        create("staging") {
+            applicationIdSuffix = ".staging"
+            versionNameSuffix = "-staging"
+            buildConfigField("String", "SERVER_URL", "\"https://newsapi.org/v2/\"")
+            buildConfigField("String", "NEWSORG_APIKEY", "\"6d362365d5e245faa1fe3253c83c45ac\"")
+            buildConfigField("String", "DB_NAME", "\"coconut-sample-db\"")
+        }
+
+        create("production") {
+            buildConfigField("String", "SERVER_URL", "\"https:/user-bogasari.com\"")
+            buildConfigField("String", "NEWSORG_APIKEY", "\"6d362365d5e245faa1fe3253c83c45ac\"")
+            buildConfigField("String", "DB_NAME", "\"coconut-sample-db\"")
+        }
     }
 }
 
 dependencies {
+    implementation(project(":coconut2-mvvm"))
+
+    // androidx
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
+    // dagger-hilt
     implementation(libs.dagger.hilt.android)
     ksp(libs.dagger.hilt.compiler)
+    // caroutines
     implementation(libs.caroutines)
     implementation(libs.caroutines.core)
-    implementation(libs.rx.android)
-    implementation(libs.retrofit)
+    // rx-android3
+    implementation(libs.rx.android3)
     implementation(platform(libs.okhttp.bom))
+    // okhttp
     implementation(libs.okhttp)
     implementation(libs.okhttp.logging)
+    // retrofit
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter.jackson)
-    implementation(libs.dagger.hilt.android)
-    ksp(libs.dagger.hilt.compiler)
+    // viewmodel livedata
     implementation(libs.lifecycle.viewmodel)
     implementation(libs.lifecycle.livedata)
+    implementation(libs.androidx.activity)
+    // room database
+    implementation(libs.androidx.room)
+    implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.compiler)
 
+    // unit test
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
