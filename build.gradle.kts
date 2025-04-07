@@ -5,4 +5,7 @@ plugins {
     alias(libs.plugins.ksp) apply false
     alias(libs.plugins.android.library) apply false
     alias(libs.plugins.dagger.hilt.android) apply false
+
+    alias(libs.plugins.maven.publish) apply false
+    alias(libs.plugins.nmcp) apply false
 }
