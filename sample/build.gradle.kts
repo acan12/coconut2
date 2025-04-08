@@ -56,7 +56,7 @@ android {
         }
 
         create("production") {
-            buildConfigField("String", "SERVER_URL", "\"https:/user-bogasari.com\"")
+            buildConfigField("String", "SERVER_URL", "\"https://newsapi.org/v2/\"")
             buildConfigField("String", "NEWSORG_APIKEY", "\"6d362365d5e245faa1fe3253c83c45ac\"")
             buildConfigField("String", "DB_NAME", "\"coconut-sample-db\"")
         }
@@ -64,7 +64,7 @@ android {
 }
 
 dependencies {
-    implementation(project(":coconut2-mvvm"))
+    implementation(project(":coconut2"))
 
     // androidx
     implementation(libs.androidx.core.ktx)
