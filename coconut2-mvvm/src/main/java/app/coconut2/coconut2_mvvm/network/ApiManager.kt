@@ -69,8 +69,6 @@ class ApiManager : IApiManager {
         httpClient: OkHttpClient.Builder,
         customInterceptors: Array<Interceptor>
     ) {
-        // add network state information interceptor as default
-//        httpClient.addNetworkInterceptor(WifiConnectionInterceptor())
 
         // add custom interceptor
         if (customInterceptors.isNotEmpty())
