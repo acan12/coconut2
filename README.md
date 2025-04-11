@@ -58,4 +58,21 @@ dependencies {
 ```
 
 
+## Library reference resources:
+Hilt: https://developer.android.com/training/dependency-injection/hilt-android
+
+MVVM Architecture : https://developer.android.com/jetpack/guide
+
+Coroutines: https://developer.android.com/kotlin/coroutines
+
+Data Binding: https://developer.android.com/topic/libraries/data-binding
+
+View Binding: https://developer.android.com/topic/libraries/view-binding
+
+Leak Canary: https://square.github.io/leakcanary/
+
+Glide: https://github.com/bumptech/glide
+
+Retrofit: https://square.github.io/retrofit/
+
 
