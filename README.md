@@ -31,13 +31,13 @@ base on clean architecture , we need to setup project directory representatif , 
 Just follow instruction below, for integration
 
 ### gradle script
-Add in your gradle.properties 
+Add in your *gradle.properties*
 ```sh
 authToken=jp_kupq41fvlrn3tcir2aggml3ck9
 ```
 
 
-Put it in your settings.gradle.kts at the end of repositories:
+Put it in your *settings.gradle.kts* at the end of repositories:
 ```sh
 dependencyResolutionManagement {
   repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
@@ -58,21 +58,122 @@ dependencies {
 ```
 
 
+## Features Available
+
+List of feature will becoming as tools for doing development.
+
+#### 1. Custom Database Integration
+
+the code base provide for developer to custom database module by registered inside dependency injection (DI).
+
+```java
+@Module
+@InstallIn(SingletonComponent::class)
+object AppModule {
+
+    @Provides
+    @Singleton
+    fun provideDatabase(
+        @ApplicationContext context: Context
+    ) = LocalDatabaseBuilder(
+        context,
+        SampleDatabase::class.java,
+        BuildConfig.DB_NAME,
+    ).build()
+
+    @Provides
+    @Singleton
+    fun provideApi(): Api = Api(ApiManager())
+
+    @Provides
+    @Singleton
+    fun provideConnectionChecker(@ApplicationContext context: Context): ConnectionManager =
+        ConnectionManager(context)
+}
+```
+
+#### 2. Custom Retrofit Interception
+
+Integrating your custom retrofit interception in network module as part of code base
+
+```java
+open class Api @Inject constructor(val apiManager: IApiManager) {
+
+    fun initHeader(): Map<String, String> {
+        val map = HashMap<String, String>()
+        map["Cache-Control"] = "no-store"
+        map["Content-Type"] = "application/json"
+        return map
+    }
+
+    fun getDomainNetwork(): ApiService =
+        ApiBuilder.build(
+            apiDomain = BuildConfig.SERVER_URL,
+            allowUntrusted = true,
+            apiService = ApiService::class.java,
+            timeOut = 300,
+            enableLogging = BuildConfig.DEBUG,
+            apiManager = apiManager
+        ) as ApiService
+}
+```
+
+#### 3. Network Status 
+
+Network status in ***ApiState*** give information for being handled in *viewmodel*
+
+*ApiState*
+```java
+sealed class ApiState<out T> {
+    data class Success<out T>(val data: T) : ApiState<T>()
+    data class Error<S>(val message: String?, val data: S? = null): ApiState<Nothing>()
+    class Loading<T> : ApiState<T>()
+}
+```
+
+*View Model*
+```java
+fun getTopHeadline() {
+        viewModelScope.launch {
+            getTopHeadlineUseCase().collect { result ->
+                when (result) {
+                    is ApiState.Success -> { data ->
+                        ....
+                        ....
+                    }
+
+                    is ApiState.Error<*> -> {
+                        Log.d("TAG", result.message.toString())
+                    }
+
+                    else -> {
+                        Log.d("TAG", "Something wrong happen")
+                    }
+                }
+
+            }
+        }
+    }
+```
+
+
+
+
 ## Library reference resources:
 Hilt: https://developer.android.com/training/dependency-injection/hilt-android
 
-MVVM Architecture : https://developer.android.com/jetpack/guide
+*MVVM Architecture* : https://developer.android.com/jetpack/guide
 
-Coroutines: https://developer.android.com/kotlin/coroutines
+*Coroutines* : https://developer.android.com/kotlin/coroutines
 
-Data Binding: https://developer.android.com/topic/libraries/data-binding
+*Data Binding* : https://developer.android.com/topic/libraries/data-binding
 
-View Binding: https://developer.android.com/topic/libraries/view-binding
+*View Binding* : https://developer.android.com/topic/libraries/view-binding
 
-Leak Canary: https://square.github.io/leakcanary/
+*Leak Canary* : https://square.github.io/leakcanary/
 
-Glide: https://github.com/bumptech/glide
+*Glide: https* : https//github.com/bumptech/glide
 
-Retrofit: https://square.github.io/retrofit/
+*Retrofit* : https://square.github.io/retrofit/
 
 
