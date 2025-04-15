@@ -30,7 +30,7 @@ base on clean architecture , we need to setup project directory representatif , 
 
 Just follow instruction below, for integration
 
-### gradle script
+### 1. gradle script
 Add in your *gradle.properties*
 ```sh
 authToken=jp_kupq41fvlrn3tcir2aggml3ck9
@@ -50,13 +50,120 @@ dependencyResolutionManagement {
   }
 }
 ```
+
 Add dependency
 ```sh
 dependencies {
+    implementation("com.google.dagger:hilt-android:2.55")
+    ksp("com.google.dagger:hilt-compiler:2.55")
     implementation("com.github.acan12:coconut2:<RELEASE-TAG-VERSION>")
 }
 ```
 
+### 2. Setup Code Base
+AndroidManifest.xml
+```xml
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:name=".App"
+        android:allowBackup="true"
+    ....
+    ....
+```
+
+App.kt extends BaseApp
+```java
+import app.coconut2.coconut2_mvvm.base.BaseApp
+import dagger.hilt.android.HiltAndroidApp
+
+@HiltAndroidApp
+class App : BaseApp()
+```
+
+Activity or Fragment
+```java
+@AndroidEntryPoint
+class MainActivity : BaseActivity<ActivityMainBinding>() {
+
+    @Inject lateinit var connectionManager: ConnectionManager
+    ...
+```
+
+View Model
+```java
+@HiltViewModel
+class HomeViewModel @Inject constructor(
+    private val getTopHeadlineUseCase: GetTopHeadlineUseCase, // <- inject usecase fetch data from remote datasource
+    private val getUserUseCase: GetUserUseCase, // <- inject usecase fetch data from local datasource
+) : ViewModel() {}
+
+```
+
+UseCase
+```java
+class GetTopHeadlineUseCase @Inject constructor(val repository: IHeadlineRepository) {
+    suspend operator fun invoke(): Flow<ApiState<TopHeadlineResponse>> =
+        repository.getSourcegetHeadlineDataAsync()
+}
+```
+
+Repository
+```java
+class HeadlineRepository @Inject constructor(
+    private val api: Api, // <- inject api object
+    private val topHeadlineLocalData: TopHeadlineLocalData, // <- inject local data source
+) : BaseRepository(), IHeadlineRepository {
+
+    // implement save local data from api response
+    override suspend fun getSourcegetHeadlineDataAsync() =
+        safeApiCall(
+            apiCall = {
+                api.getDomainNetwork().getTopHeadlines(api.initHeader())
+            },
+            saveResponse = { response ->
+                topHeadlineLocalData.save(response, DataType.JSON) // save data response into local cache in json string format
+                topHeadlineLocalData.get().collect {
+                    val data = it // fetch data response from local cache
+                    Log.d("TAG", data.sources.size.toString())
+                }
+            },
+        )
+}
+```
+
+```java
+interface IHeadlineRepository {
+    suspend fun getSourcegetHeadlineDataAsync(): Flow<ApiState<TopHeadlineResponse>>
+}
+```
+```java
+// Special function
+safeApiCall(
+    dispatcher: CoroutineDispatcher = Dispatchers.IO, // -> as default , if want to use Main just change into "Dispatchers.Main"
+    apiCall = {
+        api.getDomainNetwork().getTopHeadlines(api.initHeader())  // -> call remote api call
+    },
+    saveResponse = { response ->
+        ....
+        ....
+    },
+)
+```
+
+ApiService
+```java
+interface ApiService {
+
+    @GET("top-headlines/sources?apiKey=${BuildConfig.NEWSORG_APIKEY}")
+    suspend fun getTopHeadlines(@HeaderMap header: Map<String, String>): Response<TopHeadlineResponse>
+
+}
+```
 
 ## Features Available
 
@@ -77,14 +184,16 @@ object AppModule {
         @ApplicationContext context: Context
     ) = LocalDatabaseBuilder(
         context,
-        SampleDatabase::class.java,
+        <Database Class>::class.java,
         BuildConfig.DB_NAME,
     ).build()
 
+    // inject instant object api 
     @Provides
     @Singleton
     fun provideApi(): Api = Api(ApiManager())
 
+    // inject instant object connection manager interact with network
     @Provides
     @Singleton
     fun provideConnectionChecker(@ApplicationContext context: Context): ConnectionManager =
@@ -92,7 +201,7 @@ object AppModule {
 }
 ```
 
-#### 2. Custom Retrofit Interception
+#### 2. Custom Retrofit 
 
 Integrating your custom retrofit interception in network module as part of code base
 
@@ -108,9 +217,9 @@ open class Api @Inject constructor(val apiManager: IApiManager) {
 
     fun getDomainNetwork(): ApiService =
         ApiBuilder.build(
-            apiDomain = BuildConfig.SERVER_URL,
-            allowUntrusted = true,
-            apiService = ApiService::class.java,
+            apiDomain = BuildConfig.SERVER_URL, // base url
+            allowUntrusted = true, // ssl security
+            apiService = <Interface ApiService>::class.java,
             timeOut = 300,
             enableLogging = BuildConfig.DEBUG,
             apiManager = apiManager
@@ -125,9 +234,9 @@ Network status in ***ApiState*** give information for being handled in *viewmode
 *ApiState*
 ```java
 sealed class ApiState<out T> {
-    data class Success<out T>(val data: T) : ApiState<T>()
-    data class Error<S>(val message: String?, val data: S? = null): ApiState<Nothing>()
-    class Loading<T> : ApiState<T>()
+    data class Success<out T>(val data: T) : ApiState<T>() // Success -> network status ok and get 200 response callback
+    data class Error<S>(val message: String?, val data: S? = null): ApiState<Nothing>() // Error -> network status failed if got 400, 401 status code
+    class Loading<T> : ApiState<T>() // if not get response yet from server , as default will set status "Loading"
 }
 ```
 
@@ -135,7 +244,7 @@ sealed class ApiState<out T> {
 ```java
 fun getTopHeadline() {
         viewModelScope.launch {
-            getTopHeadlineUseCase().collect { result ->
+            getTopHeadlineUseCase().collect { result -> // use reactive programming with Flow Kotlin
                 when (result) {
                     is ApiState.Success -> { data ->
                         ....
