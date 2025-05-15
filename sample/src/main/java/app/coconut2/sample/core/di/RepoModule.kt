@@ -5,6 +5,7 @@ import app.coconut2.sample.data.local.data.TopHeadlineLocalData
 import app.coconut2.sample.data.local.repo.UserLocalRepository
 import app.coconut2.sample.data.remote.Api
 import app.coconut2.sample.data.remote.repo.HeadlineRepository
+import app.coconut2.sample.domain.repo.headline.IHeadlineRepository
 import app.coconut2.sample.domain.repo.user.IUserRepository
 import dagger.Module
 import dagger.Provides
@@ -19,6 +20,9 @@ object RepoModule {
     fun provideUserRepository(userDao: UserDao): IUserRepository = UserLocalRepository(userDao)
 
     @Provides
-    fun provideHeadlineRepository(api: Api, topHeadlineLocalData: TopHeadlineLocalData) =
+    fun provideHeadlineRepository(
+        api: Api,
+        topHeadlineLocalData: TopHeadlineLocalData
+    ): IHeadlineRepository =
         HeadlineRepository(api, topHeadlineLocalData)
 }
