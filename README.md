@@ -31,25 +31,6 @@ base on clean architecture , we need to setup project directory representatif , 
 Just follow instruction below, for integration
 
 ### 1. gradle script
-Add in your *gradle.properties*
-```sh
-authToken=jp_kupq41fvlrn3tcir2aggml3ck9
-```
-
-
-Put it in your *settings.gradle.kts* at the end of repositories:
-```sh
-dependencyResolutionManagement {
-  repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-  repositories {
-      ...
-      maven {
-          url = uri("https://jitpack.io")
-          credentials.username = providers.gradleProperty("authToken").get()
-      }
-  }
-}
-```
 
 Add dependency
 ```sh
