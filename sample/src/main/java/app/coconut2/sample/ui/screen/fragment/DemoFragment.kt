@@ -11,6 +11,7 @@ class DemoFragment : BaseFragment<FragmentDemoBinding>() {
         get() = FragmentDemoBinding::inflate
 
     override fun setup() {
+        binding.labelPage.text = "Demo Fragment"
         Toast.makeText(requireContext(), "Setup called", Toast.LENGTH_LONG).show()
     }
 
