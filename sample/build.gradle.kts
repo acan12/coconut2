@@ -89,6 +89,9 @@ dependencies {
     implementation(libs.lifecycle.viewmodel)
     implementation(libs.lifecycle.livedata)
     implementation(libs.androidx.activity)
+    // navigation component
+    implementation(libs.android.navigation.fragment)
+    implementation(libs.android.navigation.ui)
     // room database
     implementation(libs.androidx.room)
     implementation(libs.androidx.room.ktx)
@@ -98,5 +101,6 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(libs.android.navigation.testing)
 
 }
