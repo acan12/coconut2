@@ -22,7 +22,7 @@ glide = "4.16.0"
 activityVersion = "1.10.0"
 mavenPublish = "0.28.0"
 nmcp = "0.0.7"
-navVersion = "2.9.0"
+navVersion = "2.3.5"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -45,8 +45,8 @@ rx-android3 = { group = "io.reactivex.rxjava3", name = "rxandroid", version.ref 
 lifecycle-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
 lifecycle-livedata = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycle" }
 androidx-activity = { group = "androidx.activity", name = "activity-ktx", version.ref = "activityVersion" }
-android-navigation-fragment = { group = "androidx.navigation", name = "navigation-fragment", version.ref = "navVersion"}
-android-navigation-ui = { group = "androidx.navigation", name = "navigation-ui", version.ref = "navVersion"}
+android-navigation-fragment = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navVersion"}
+android-navigation-ui = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navVersion"}
 
 androidx-room = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
 androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
