@@ -3,6 +3,7 @@ package app.coconut2.sample.data.remote
 import app.coconut2.coconut2_mvvm.core.datasource.ApiBuilder
 import app.coconut2.coconut2_mvvm.interfaces.IApiManager
 import app.coconut2.sample.BuildConfig
+import retrofit2.converter.jackson.JacksonConverterFactory
 import javax.inject.Inject
 
 open class Api @Inject constructor(val apiManager: IApiManager) {
@@ -21,6 +22,6 @@ open class Api @Inject constructor(val apiManager: IApiManager) {
             apiService = ApiService::class.java,
             timeOut = 300,
             enableLogging = BuildConfig.DEBUG,
-            apiManager = apiManager
+            apiManager = apiManager,
         ) as ApiService
 }

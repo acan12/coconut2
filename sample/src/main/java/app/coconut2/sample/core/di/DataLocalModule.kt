@@ -2,13 +2,8 @@ package app.coconut2.sample.core.di
 
 import android.content.Context
 import android.content.SharedPreferences
-import app.coconut2.coconut2_mvvm.core.datasource.local.cache.CacheDataPreference
 import app.coconut2.sample.BuildConfig
-import app.coconut2.sample.data.local.dao.UserDao
-import app.coconut2.sample.data.local.data.TopHeadlineLocalData
-import app.coconut2.sample.data.local.repo.UserLocalRepository
-import app.coconut2.sample.data.remote.response.TopHeadlineResponse
-import app.coconut2.sample.domain.repo.user.IUserRepository
+import app.coconut2.sample.data.local.data.TopHeadlineLocal
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -27,5 +22,5 @@ object DataLocalModule {
 
 
     @Provides
-    fun provideTopHeadlineData(sharedPreferences: SharedPreferences): TopHeadlineLocalData = TopHeadlineLocalData(sharedPreferences)
+    fun provideTopHeadlineData(sharedPreferences: SharedPreferences): TopHeadlineLocal = TopHeadlineLocal(sharedPreferences)
 }

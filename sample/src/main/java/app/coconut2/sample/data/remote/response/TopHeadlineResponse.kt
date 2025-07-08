@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class TopHeadlineResponse(
     val sources: List<DataResponse> = emptyList()
-)
+): BaseResponse<DataResponse>()
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 class DataResponse {
