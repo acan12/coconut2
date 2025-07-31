@@ -5,12 +5,13 @@ import app.coconut2.coconut2_mvvm.interfaces.IApiManager
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
-import retrofit2.converter.jackson.JacksonConverterFactory
 import java.util.concurrent.TimeUnit
 
 class ApiManager : IApiManager {
+
     override fun init(
         apiDomain: String,
         allowUntrusted: Boolean,
@@ -18,12 +19,13 @@ class ApiManager : IApiManager {
         timeout: Long,
         enableLoggingHttp: Boolean,
         interceptors: Array<Interceptor>,
-        networkInterceptors: Array<Interceptor>
+        networkInterceptors: Array<Interceptor>,
+        converterType: Converter.Factory,
     ): Any {
 
         return Retrofit.Builder()
             .baseUrl(apiDomain)
-            .addConverterFactory(JacksonConverterFactory.create())
+            .addConverterFactory(converterType)
             .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
             .client(
                 getHttpClient(
@@ -61,7 +63,7 @@ class ApiManager : IApiManager {
         executePreInterceptor(httpClient, customInterceptors)
 
         // Post-Network Interceptor
-        executePostInterceptor(httpClient, customNetworkInterceptors)
+        executeNetworkInterceptor(httpClient, customNetworkInterceptors)
         return httpClient.build()
     }
 
@@ -76,7 +78,7 @@ class ApiManager : IApiManager {
                 httpClient.addInterceptor(interceptor)
     }
 
-    private fun executePostInterceptor(
+    private fun executeNetworkInterceptor(
         httpClient: OkHttpClient.Builder,
         customNetworkInterceptors: Array<Interceptor>
     ) {

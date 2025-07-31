@@ -66,6 +66,4 @@ class UserViewModel @Inject constructor(
             }
         }
     }
-
-
 }

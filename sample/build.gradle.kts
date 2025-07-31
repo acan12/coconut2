@@ -7,12 +7,12 @@ plugins {
 
 android {
     namespace = "app.coconut2.sample"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "app.coconut2.sample"
-        minSdk = 24
-        targetSdk = 35
+        minSdk = 25
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0"
 
@@ -94,7 +94,7 @@ dependencies {
     implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)
 
-    // unit test
+    // #Unit test
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

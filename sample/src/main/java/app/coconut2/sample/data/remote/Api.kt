@@ -21,6 +21,6 @@ open class Api @Inject constructor(val apiManager: IApiManager) {
             apiService = ApiService::class.java,
             timeOut = 300,
             enableLogging = BuildConfig.DEBUG,
-            apiManager = apiManager
+            apiManager = apiManager,
         ) as ApiService
 }

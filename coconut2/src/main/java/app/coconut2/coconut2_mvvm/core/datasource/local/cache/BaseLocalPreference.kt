@@ -8,7 +8,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import kotlinx.coroutines.flow.Flow
 import java.util.Date
 
-abstract class CacheDataPreference<T>(private val sharedPreferences: SharedPreferences) {
+abstract class BaseLocalPreference<T>(private val sharedPreferences: SharedPreferences) {
     abstract fun getKeyName(): String
     abstract fun getValue(json: String): T
     open fun expiredInterval() = 0 // in second

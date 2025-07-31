@@ -14,5 +14,4 @@ class DemoFragment : BaseFragment<FragmentDemoBinding>() {
         binding.labelPage.text = "Demo Fragment"
         Toast.makeText(requireContext(), "Setup called", Toast.LENGTH_LONG).show()
     }
-
 }

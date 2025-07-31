@@ -2,11 +2,10 @@ package app.coconut2.coconut2_mvvm.core.datasource
 
 import app.coconut2.coconut2_mvvm.interfaces.IApiManager
 import okhttp3.Interceptor
+import retrofit2.Converter
+import retrofit2.converter.jackson.JacksonConverterFactory
 
 open class ApiBuilder {
-    enum class Method {
-        GET, PUT, POST, UPDATE, DELETE
-    }
 
     companion object {
         fun build(
@@ -17,7 +16,8 @@ open class ApiBuilder {
             timeOut: Long,
             enableLogging: Boolean,
             interceptors: Array<Interceptor> = arrayOf(),
-            networkInterceptors: Array<Interceptor> = arrayOf()
+            networkInterceptors: Array<Interceptor> = arrayOf(),
+            converterType: Converter.Factory = JacksonConverterFactory.create()
         ): Any {
             return apiManager.init(
                 apiDomain,
@@ -26,7 +26,8 @@ open class ApiBuilder {
                 timeOut,
                 enableLogging,
                 interceptors,
-                networkInterceptors
+                networkInterceptors,
+                converterType = converterType,
             )
         }
     }
