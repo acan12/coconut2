@@ -63,7 +63,7 @@ class ApiManager : IApiManager {
         executePreInterceptor(httpClient, customInterceptors)
 
         // Post-Network Interceptor
-        executePostInterceptor(httpClient, customNetworkInterceptors)
+        executeNetworkInterceptor(httpClient, customNetworkInterceptors)
         return httpClient.build()
     }
 
@@ -78,7 +78,7 @@ class ApiManager : IApiManager {
                 httpClient.addInterceptor(interceptor)
     }
 
-    private fun executePostInterceptor(
+    private fun executeNetworkInterceptor(
         httpClient: OkHttpClient.Builder,
         customNetworkInterceptors: Array<Interceptor>
     ) {

@@ -1,5 +1,6 @@
 package app.coconut2.coconut2_mvvm.network
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.IntentFilter
 import android.net.ConnectivityManager
@@ -15,6 +16,7 @@ class ConnectionManager @Inject constructor(var context: Context) : LiveData<Boo
     private val connectivityManager =
         context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
+    @SuppressLint("ObsoleteSdkInt")
     override fun onActive() {
         super.onActive()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {

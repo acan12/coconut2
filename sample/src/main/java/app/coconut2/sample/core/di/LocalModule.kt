@@ -13,14 +13,14 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object DataLocalModule {
+object LocalModule {
 
     @Singleton
     @Provides
-    fun provideSharedPreference(@ApplicationContext context: Context): SharedPreferences =
+    fun provideSharedPreferenceLocal(@ApplicationContext context: Context): SharedPreferences =
         context.getSharedPreferences(BuildConfig.APPLICATION_ID, Context.MODE_PRIVATE)
 
-
     @Provides
-    fun provideTopHeadlineData(sharedPreferences: SharedPreferences): TopHeadlineLocal = TopHeadlineLocal(sharedPreferences)
+    fun provideTopHeadlineLocal(sharedPreferences: SharedPreferences): TopHeadlineLocal =
+        TopHeadlineLocal(sharedPreferences)
 }

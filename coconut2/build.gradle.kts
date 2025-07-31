@@ -10,7 +10,7 @@ android {
     compileSdk = 36
 
     defaultConfig {
-        minSdk = 25
+        minSdk = 26
         version = "1.0.3"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -44,19 +44,31 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
+
+    // room database
+    implementation(libs.androidx.room)
+    implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.compiler)
+
+    // glide image
+    implementation(libs.glide.image)
+
     // security
     implementation(libs.security.crypto)
     // dagger-hilt
     implementation(libs.dagger.hilt.android)
     ksp(libs.dagger.hilt.compiler)
-    // coroutines
+
+    // coroutines - option #1 for reactive programming
     implementation(libs.caroutines)
     implementation(libs.caroutines.core)
+    // rxandroid 3 - option #2 for reactive programming
+    implementation(libs.rx.android3)
+
     // lifecycle
     implementation(libs.lifecycle.viewmodel)
     implementation(libs.lifecycle.livedata)
-    // rxandroid 3
-    implementation(libs.rx.android3)
+
    // okhttp
     implementation(platform(libs.okhttp.bom))
     implementation(libs.okhttp)
@@ -66,13 +78,8 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter.jackson)
     implementation(libs.retrofit.adapter.rxjava3)
-    // glide image
-    implementation(libs.glide.image)
-    // room database
-    implementation(libs.androidx.room)
-    implementation(libs.androidx.room.ktx)
-    ksp(libs.androidx.room.compiler)
-    // unit test
+
+    // #Unit test
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
