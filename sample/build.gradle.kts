@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.ksp)
     alias(libs.plugins.dagger.hilt.android)
+
 }
 
 android {
@@ -85,6 +86,9 @@ dependencies {
     // retrofit
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter.jackson)
+    // navigation
+    implementation(libs.navigationFragment)
+    implementation(libs.navigationUi)
     // viewmodel livedata
     implementation(libs.lifecycle.viewmodel)
     implementation(libs.lifecycle.livedata)

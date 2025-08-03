@@ -22,6 +22,7 @@ glide = "4.16.0"
 activityVersion = "1.10.0"
 mavenPublish = "0.28.0"
 nmcp = "0.0.7"
+navVersion = "2.7.7"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -35,6 +36,8 @@ dagger-hilt-android = { group = "com.google.dagger", name = "hilt-android", vers
 dagger-hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
 #dagger-hilt-testing = { group = "com.google.dagger", name = "hilt-android-testing", version.ref = "hilt" }
 
+navigation-fragment = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navVersion" }
+navigation-ui = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navVersion" }
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 okhttp-bom = { group = "com.squareup.okhttp3", name = "okhttp-bom", version.ref = "okhttpBom" }
 okhttp = { group = "com.squareup.okhttp3", name = "okhttp" }
@@ -54,6 +57,8 @@ androidx-room-compiler = { group = "androidx.room", name = "room-compiler", vers
 
 glide-image = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }
 
+
+
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "androidLibrary" }
@@ -62,4 +67,5 @@ ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 dagger-hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 maven-publish = { id = "com.vanniktech.maven.publish", version.ref = "mavenPublish" }
 nmcp = { id = "com.gradleup.nmcp", version.ref = "nmcp" }
+navigation-safeargs = { id = 'androidx.navigation.safeargs'}
 
