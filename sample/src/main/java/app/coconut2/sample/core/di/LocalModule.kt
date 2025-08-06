@@ -3,7 +3,7 @@ package app.coconut2.sample.core.di
 import android.content.Context
 import android.content.SharedPreferences
 import app.coconut2.sample.BuildConfig
-import app.coconut2.sample.data.local.data.TopHeadlineLocal
+import app.coconut2.sample.data.local.source.TopHeadlineLocal
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

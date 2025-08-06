@@ -1,6 +1,6 @@
 package app.coconut2.sample.domain.mapper
 
-import app.coconut2.sample.data.remote.response.DataResponse
+import app.coconut2.sample.data.remote.source.response.DataResponse
 
 fun DataResponse.toHeadlineData(): HeadlineData =
     HeadlineData(

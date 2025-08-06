@@ -3,7 +3,7 @@ package app.coconut2.sample.data.remote.repo
 import android.util.Log
 import app.coconut2.coconut2_mvvm.base.BaseRepository
 import app.coconut2.coconut2_mvvm.core.DataType
-import app.coconut2.sample.data.local.data.TopHeadlineLocal
+import app.coconut2.sample.data.local.source.TopHeadlineLocal
 import app.coconut2.sample.data.remote.Api
 import app.coconut2.sample.domain.repo.headline.IHeadlineRepository
 import javax.inject.Inject

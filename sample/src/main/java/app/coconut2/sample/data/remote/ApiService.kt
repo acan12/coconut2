@@ -1,7 +1,7 @@
 package app.coconut2.sample.data.remote
 
 import app.coconut2.sample.BuildConfig
-import app.coconut2.sample.data.remote.response.TopHeadlineResponse
+import app.coconut2.sample.data.remote.source.response.TopHeadlineResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.HeaderMap

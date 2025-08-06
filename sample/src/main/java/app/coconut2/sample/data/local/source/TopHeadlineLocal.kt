@@ -1,8 +1,8 @@
-package app.coconut2.sample.data.local.data
+package app.coconut2.sample.data.local.source
 
 import android.content.SharedPreferences
 import app.coconut2.coconut2_mvvm.core.datasource.local.cache.BaseLocalPreference
-import app.coconut2.sample.data.remote.response.TopHeadlineResponse
+import app.coconut2.sample.data.remote.source.response.TopHeadlineResponse
 import com.fasterxml.jackson.databind.ObjectMapper
 
 class TopHeadlineLocal(

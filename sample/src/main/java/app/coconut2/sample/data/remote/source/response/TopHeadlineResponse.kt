@@ -1,4 +1,4 @@
-package app.coconut2.sample.data.remote.response
+package app.coconut2.sample.data.remote.source.response
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 
